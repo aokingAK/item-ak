@@ -3,7 +3,7 @@
 @section('title', '商品一覧')
 
 @section('content_header')
-    <h1>商品一覧</h1>
+    <h1>発注一覧</h1>
 @stop
 
 <div class="panel panel-default">
@@ -15,7 +15,7 @@
                    
                      <!-- 検索画面表示 -->
                      <div class="text-center">
-                     <form class="search" action="/items" method="GET">
+                     <form class="search" action="/items/order_history" method="GET">
                             <input type="text" name="search">
                                 <button type="submit">検索</button>
                         </form>
@@ -25,31 +25,32 @@
                     <table class="table table-hover text-nowrap table table-striped table-bordered text-center">
                         <thead>
                             <tr>
-                                <!-- <th>ID</th> -->
-                                <th scope="col">@sortablelink ('id','品番')</th>
-                                <th scope="col">@sortablelink ('name','名前')</th>
-                                <th scope="col">@sortablelink('type','種別')</th>
-                                <th scope="col">@sortablelink('detail','詳細')</th>
-                                <th scope="col">@sortablelink('price','金額')</th>      
+                                <th>注文者</th>
+                                <th>名前</th>
+                                <th>種別</th>
+                                <th>詳細</th>
+                                <th>金額</th> 
+                                <th>個数</th> 
+                                <th>注文日時</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($items as $item)
+                            @foreach ($confirms as $confirm)
                                 <tr>
-                                    <td scope="row">{{ $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->detail }}</td>
-                                    <td>{{ $item->price }}</td>    
-                                    <td><a class="btn btn-info" href="/items/edit/{{ $item->id }}">編集</a></td>
-                                    <td><a class="btn btn-primary" href="/items/request/{{ $item->id }}">注文</a></td> 
+                                    <td>{{ $confirm->user_id }}</td>
+                                    <td>{{ $confirm->name }}</td>
+                                    <td>{{ $confirm->type }}</td>
+                                    <td>{{ $confirm->detail }}</td>
+                                    <td>{{ $confirm->price }}</td>  
+                                    <td>{{ $confirm->count }}</td>      
+                                    <td>{{ $confirm->created_at }}</td>      
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
             <!-- ページネート機能 -->
-        {{ $items->links() }}
+        {{ $confirms->links() }}
 
                 </div>
             </div>

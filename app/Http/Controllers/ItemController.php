@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use Illuminate\Auth\RequestGuard;
+use Whoops\Run;
 
 class ItemController extends Controller
 {
@@ -18,18 +20,38 @@ class ItemController extends Controller
         $this->middleware('auth');
     }
 
+    public function sortable()
+    {
+        $posts = Item::sortable()->get(); //sortable() を先に宣言
+        return view('item.index')->with('posts', $posts);
+    }
     /**
      * 商品一覧
      */
-    public function index()
+    public function index(Request $request)
     {
-        // 商品一覧取得
-        $items = Item
-            ::where('items.status', 'active')
-            ->select()
-            ->get();
 
-        return view('item.index', compact('items'));
+        // $items = Item
+        //     ::where('items.status', 'active')
+        //     ->select()
+        //     ->get();
+
+        // return view('item.index', compact('items'));
+        // 商品一覧取得 検索機能
+        $search = $request->input('search');
+        $query = Item::query();
+        if ($search) {
+            $query->where('name','like', '%'.$search.'%');
+            $query->orwhere('id','like', '%'.$search.'%');
+            $query->orwhere('type','like', '%'.$search.'%');
+            $query->orwhere('detail','like', '%'.$search.'%');
+        }
+
+        $items = $query->sortable()->paginate(10);
+
+        return view("item.index" , [
+            "items" => $items,
+        ]);
     }
 
     /**
@@ -46,10 +68,11 @@ class ItemController extends Controller
 
             // 商品登録
             Item::create([
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::id(),
                 'name' => $request->name,
                 'type' => $request->type,
                 'detail' => $request->detail,
+                'price' => $request->price,
             ]);
 
             return redirect('/items');
@@ -57,4 +80,178 @@ class ItemController extends Controller
 
         return view('item.add');
     }
-}
+
+    public function search(Request $request)
+    {
+        //検索機能
+        $Items = Item::orderBy("created_at" , "asc")->paginate(20);
+        $search = $request->input('search');
+        $query = Item::query();
+        if ($search) {
+            $query->where('name','like', '%'.$search.'%');
+            $query->orwhere('id','like', '%'.$search.'%');
+            $query->orwhere('content','like', '%'.$search.'%');
+            $query->orwhere('price','like', '%'.$search.'%');
+            $query->orwhere('detail','like', '%'.$search.'%');
+        }
+        $Items = $query->paginate(20);
+        
+        return view("items.items" , [
+            "items" => $Items,
+        ]);
+    }
+// 編集画面への遷移
+    public function edit($id)
+    {
+        $item = Item::find($id);
+        return view("item.edit" ,  [
+            "item" => $item,
+        ]);
+    }
+// 編集処理
+    public function update(Request $request , $id)
+    {
+        $Items = Item::find($id);
+        $Items -> name =$request -> name;
+        $Items -> type = $request -> type;
+        $Items -> price = $request -> price;
+        $Items -> detail = $request -> detail;
+        $Items -> save();
+           
+        return redirect('/items');
+    }
+
+   /**
+        * 削除処理
+        *
+        * @param Request $request
+        * @param Item $Items
+        * @return Response
+        */
+        public function delete(Request $request,$id )
+        {
+            $item = Item::find($id);
+            $item->delete();
+            return redirect('/items');
+        }
+
+       //注文画面に遷移
+        public function order($id)
+        {
+            $item = Item::find($id);
+            return view("item.request" ,  [
+                "item" => $item,
+            ]);
+        }
+
+        // 注文処理
+        public function request(Request $request ,$id)
+        {
+            $Items = Item::find($id);
+
+                // 注文登録(カートに入れる)
+                \App\Models\Request::create([
+                    'user_id' => Auth::id(),
+                    'name' => $request->name,
+                    'type' => $request->type,
+                    'detail' => $request->detail,
+                    'price' => $request->price,
+                    'count' => $request->count,
+                    ]);
+    
+                return redirect('/items');
+            }
+    
+    ////////////////////*** 注文一覧////////////////////////////
+
+    public function order_history(Request $request)
+    {
+
+        // $items = Item
+        //     ::where('items.status', 'active')
+        //     ->select()
+        //     ->get();
+
+        // return view('item.index', compact('items'));
+        // 注文一覧取得 検索機能
+        $search = $request->input('search');
+        $query = \App\Models\Request::query();
+        if ($search) {
+            $query->where('name','like', '%'.$search.'%');
+            $query->orwhere('id','like', '%'.$search.'%');
+            $query->orwhere('type','like', '%'.$search.'%');
+            $query->orwhere('detail','like', '%'.$search.'%');
+        }
+        $orders = $query->paginate(10);
+        
+        return view("item.order_history" , [
+            "orders" => $orders,
+        ]);
+    }
+
+      /**
+        * 削除処理
+        *
+        * @param Request $request
+        * @param Item $Items
+        * @return Response
+        */
+        public function order_delete(Request $request,$id )
+        {
+            $orders = \App\Models\Request::find($id);
+            $orders->delete();
+            return redirect('/items/order_history');
+        }
+
+        // 注文処理
+        public function confirm(Request $request ,$id)
+        {
+            $item = \App\Models\Request::find($id);
+
+                // 発注する（注文確定）
+                \App\Models\Confirm::create([
+                    'user_id' => Auth::id(),
+                    'name' => $item->name,
+                    'type' => $item->type,
+                    'detail' => $item->detail,
+                    'price' => $item->price,
+                    'count' => $item->count,
+                    ]);
+
+                    $orders = \App\Models\Request::find($id);
+                    $orders->delete();
+                    return redirect('/items/order_history');
+            }
+
+
+        ///////////////////発注一覧/////////////////////////
+        
+       public function order_confirm(Request $request)
+       {
+   
+        //    $items = Item
+        //        ::where('items.status', 'active')
+        //        ->select()
+        //        ->get();
+   
+        //    return view('item.index', compact('items'));
+        //    発注一覧取得 検索機能
+           $search = $request->input('search');
+           $query = \App\Models\Confirm::query();
+           if ($search) {
+               $query->where('name','like', '%'.$search.'%');
+               $query->orwhere('id','like', '%'.$search.'%');
+               $query->orwhere('type','like', '%'.$search.'%');
+               $query->orwhere('detail','like', '%'.$search.'%');
+           }
+           $confirms = $query->paginate(10);
+           
+           return view("item.end" , [
+               "confirms" => $confirms,
+           ]);
+       }
+
+       
+  }
+
+

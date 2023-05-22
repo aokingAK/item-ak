@@ -19,6 +19,7 @@
                 </div>
             @endif
 
+            <div class="add_main">
             <div class="card card-primary">
                 <form method="POST">
                     @csrf
@@ -37,10 +38,16 @@
                             <label for="detail">詳細</label>
                             <input type="text" class="form-control" id="detail" name="detail" placeholder="詳細説明">
                         </div>
+
+                        <div class="form-group">
+                            <label for="price">金額</label>
+                            <input type="text" class="form-control" id="price" name="price" placeholder="金額">
+                        </div>
                     </div>
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">登録</button>
+                    </div>
                     </div>
                 </form>
             </div>

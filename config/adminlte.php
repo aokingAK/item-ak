@@ -231,6 +231,23 @@ return [
             'icon' => 'fas fa-gamepad',
         ],
 
+        [
+            'text' => '注文履歴',
+            'url'  => 'items/order_history',
+            'icon' => 'fas fa-gamepad',
+        ],
+
+        [
+            'text' => '発注履歴',
+            'url'  => 'items/end',
+            'icon' => 'fas fa-gamepad',
+        ],
+        [
+            'text' => '商品登録',
+            'url'  => '/items/add',
+            'icon' => 'fas fa-gamepad',
+        ],
+        
         // AdminLTEデフォルト
         /*
         // Navbar items:
