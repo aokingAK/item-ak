@@ -54,12 +54,10 @@
                                      </td>
                                      @can('admin')
                                     <td>
-                                    @if(Auth::user()->id ===$order->user_id)
                                     <form action="{{ url('items/confirm/'.$order->id) }}" method="POST">
                                         {{ csrf_field() }}
                                         <input class="btn btn-primary" type="submit" id="confirm-items-{{ $order->id }}"  value="発注">
                                         </form>
-                                        @endif
                                     @endcan
                                     </td> 
                                 </tr>
