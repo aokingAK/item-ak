@@ -45,7 +45,7 @@ Route::prefix('items')->group(function () {
 
     // 発注画面＋検索機能
     Route::get('/end', [App\Http\Controllers\ItemController::class, 'order_confirm']);
-    
+
     //管理者にのみ表示 
     Route::group(['middleware' => ['can:admin']], function () {
     // 商品登録機能
