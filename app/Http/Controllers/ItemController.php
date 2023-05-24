@@ -47,7 +47,11 @@ class ItemController extends Controller
             $query->orwhere('detail','like', '%'.$search.'%');
         }
 
-        $items = $query->sortable()->paginate(10);
+        $items = $query->sortable()->paginate(10)->appends([
+            'search'=>$search,
+            'sort'=>$request->input('sort'),
+            'direction'=>$request->input('direction')
+        ]);
 
         return view("item.index" , [
             "items" => $items,
