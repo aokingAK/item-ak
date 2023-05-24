@@ -24,9 +24,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::prefix('items')->group(function () {
     // 商品画面表示＋検索機能
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
-    // 商品登録機能
-    Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
+   
     // 商品編集機能
     Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit']);
     Route::post('/edit/{id}', [App\Http\Controllers\ItemController::class, 'update']);
@@ -47,5 +45,12 @@ Route::prefix('items')->group(function () {
 
     // 発注画面＋検索機能
     Route::get('/end', [App\Http\Controllers\ItemController::class, 'order_confirm']);
+    
+    //管理者にのみ表示 
+    Route::group(['middleware' => ['can:admin']], function () {
+    // 商品登録機能
+    Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    });
 
 });

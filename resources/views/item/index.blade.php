@@ -41,7 +41,10 @@
                                     <td>{{ $item->type }}</td>
                                     <td>{{ $item->detail }}</td>
                                     <td>{{ $item->price }}</td>    
+                                    <!-- 管理者のみに表示 -->
+                                    @can('admin') 
                                     <td><a class="btn btn-info" href="/items/edit/{{ $item->id }}">編集</a></td>
+                                    @endcan
                                     <td><a class="btn btn-primary" href="/items/request/{{ $item->id }}">注文</a></td> 
                                 </tr>
                             @endforeach

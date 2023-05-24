@@ -242,6 +242,7 @@ return [
             'url'  => 'items/end',
             'icon' => 'fas fa-gamepad',
         ],
+        
         [
             'text' => '商品登録',
             'url'  => '/items/add',
