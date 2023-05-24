@@ -24,10 +24,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::prefix('items')->group(function () {
     // 商品画面表示＋検索機能
     Route::get('/', [App\Http\Controllers\ItemController::class, 'index']);
-   
-    // 商品編集機能
-    Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit']);
-    Route::post('/edit/{id}', [App\Http\Controllers\ItemController::class, 'update']);
+    // 商品登録機能
+    Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
+    
     // 商品削除機能
     Route::post('/delete/{id}', [App\Http\Controllers\ItemController::class, 'delete']);
     // 商品注文画面に遷移
@@ -39,18 +39,21 @@ Route::prefix('items')->group(function () {
     Route::get('/order_history', [App\Http\Controllers\ItemController::class, 'order_history']);
     // 注文削除機能
     Route::post('/order_history/delete/{id}', [App\Http\Controllers\ItemController::class, 'order_delete']);
-    // 注文画面から削除し、発注をかける
-    Route::get('/end', [App\Http\Controllers\ItemController::class, 'confirm']);
-    Route::post('/confirm/{id}', [App\Http\Controllers\ItemController::class, 'confirm']);
-
+   
     // 発注画面＋検索機能
     Route::get('/end', [App\Http\Controllers\ItemController::class, 'order_confirm']);
+     // 注文画面から削除し、発注をかける
+    // Route::get('/end', [App\Http\Controllers\ItemController::class, 'confirm']);
+    Route::post('/confirm/{id}', [App\Http\Controllers\ItemController::class, 'confirm']);
+     
 
-    //管理者にのみ表示 
+    /////////管理者権限/////////////
     Route::group(['middleware' => ['can:admin']], function () {
-    // 商品登録機能
-    Route::get('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    Route::post('/add', [App\Http\Controllers\ItemController::class, 'add']);
-    });
 
+    // 商品編集機能
+    Route::get('/edit/{id}', [App\Http\Controllers\ItemController::class, 'edit']);
+    Route::post('/edit/{id}', [App\Http\Controllers\ItemController::class, 'update']);
+
+    });
+    
 });

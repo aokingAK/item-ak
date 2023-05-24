@@ -31,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="type">種別</label>
-                            <input type="number" class="form-control" id="type" name="type" placeholder="1, 2, 3, ...">
+                            <input type="number" class="form-control" id="type_id" name="type_id" placeholder="1, 2, 3, ...">
                         </div>
 
                         <div class="form-group">

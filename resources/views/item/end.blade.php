@@ -43,7 +43,7 @@
                                     <td>{{ $confirm->detail }}</td>
                                     <td>{{ $confirm->price }}</td>  
                                     <td>{{ $confirm->count }}</td>      
-                                    <td>{{ $confirm->created_at }}</td>      
+                                    <td>{{ $confirm->created_at }}</td>   
                                 </tr>
                             @endforeach
                         </tbody>

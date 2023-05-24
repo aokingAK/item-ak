@@ -58,8 +58,8 @@
                                         {{ csrf_field() }}
                                         <input class="btn btn-primary" type="submit" id="confirm-items-{{ $order->id }}"  value="発注">
                                         </form>
-                                    @endcan
                                     </td> 
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>
