@@ -1,5 +1,3 @@
-@can('admin') {{-- 管理者に表示される}}
-
 @extends('adminlte::page')
 
 @section('title', '商品登録')
@@ -62,4 +60,3 @@
 
 @section('js')
 @stop
-@endcan
