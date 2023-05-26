@@ -25,7 +25,7 @@
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">種類</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="type" value="{{$item->type }}">
+    <input type="text" class="form-control" id="exampleInputPassword1" name="type_id" value="{{$item->type }}">
   </div>
 
   <div class="mb-3">

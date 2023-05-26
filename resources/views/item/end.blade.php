@@ -40,6 +40,7 @@
                                     <td>{{ $confirm->user_id }}</td>
                                     <td>{{ $confirm->name }}</td>
                                     <td>{{ $confirm->type_id }}</td>
+                                    <td>{{ App\Models\Item::TYPES[$confirm->type_id] }}</td>
                                     <td>{{ $confirm->detail }}</td>
                                     <td>{{ $confirm->price }}</td>  
                                     <td>{{ $confirm->count }}</td>      

@@ -169,7 +169,7 @@ class ItemController extends Controller
                 \App\Models\Request::create([
                     'user_id' => Auth::id(),
                     'name' => $request->name,
-                    'type' => $request->type,
+                    'type_id' => $request->type_id,
                     'detail' => $request->detail,
                     'price' => $request->price,
                     'count' => $request->count,
@@ -195,7 +195,7 @@ class ItemController extends Controller
         if ($search) {
             $query->where('name','like', '%'.$search.'%');
             $query->orwhere('id','like', '%'.$search.'%');
-            $query->orwhere('type','like', '%'.$search.'%');
+            $query->orwhere('type_id','like', '%'.$search.'%');
             $query->orwhere('detail','like', '%'.$search.'%');
         }
         $orders = $query->paginate(10);
@@ -228,7 +228,7 @@ class ItemController extends Controller
                 \App\Models\Confirm::create([
                     'user_id' => Auth::id(),
                     'name' => $item->name,
-                    'type' => $item->type,
+                    'type_id' => $item->type_id,
                     'detail' => $item->detail,
                     'price' => $item->price,
                     'count' => $item->count,
@@ -257,7 +257,7 @@ class ItemController extends Controller
            if ($search) {
                $query->where('name','like', '%'.$search.'%');
                $query->orwhere('id','like', '%'.$search.'%');
-               $query->orwhere('type','like', '%'.$search.'%');
+               $query->orwhere('type_id','like', '%'.$search.'%');
                $query->orwhere('detail','like', '%'.$search.'%');
            }
            $confirms = $query->paginate(10);

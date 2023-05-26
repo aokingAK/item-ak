@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ $order->user_id }}</td>
                                     <td>{{ $order->name }}</td>
-                                    <td>{{ $order->type_id }}</td>
+                                    <td>{{ App\Models\Item::TYPES[$order->type_id] }}</td>
                                     <td>{{ $order->detail }}</td>
                                     <td>{{ $order->price }}</td>  
                                     <td>{{ $order->count }}</td>      
