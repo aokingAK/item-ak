@@ -97,25 +97,25 @@ class ItemController extends Controller
         return view('item.add');
     }
 
-    public function search(Request $request)
-    {
-        //検索機能
-        $Items = Item::orderBy("created_at" , "asc")->paginate(20);
-        $search = $request->input('search');
-        $query = Item::query();
-        if ($search) {
-            $query->where('name','like', '%'.$search.'%');
-            $query->orwhere('id','like', '%'.$search.'%');
-            $query->orwhere('content','like', '%'.$search.'%');
-            $query->orwhere('price','like', '%'.$search.'%');
-            $query->orwhere('detail','like', '%'.$search.'%');
-        }
-        $Items = $query->paginate(20);
+    // public function search(Request $request)
+    // {
+    //     //検索機能
+    //     $Items = Item::orderBy("created_at" , "asc")->paginate(20);
+    //     $search = $request->input('search');
+    //     $query = Item::query();
+    //     if ($search) {
+    //         $query->where('name','like', '%'.$search.'%');
+    //         $query->orwhere('id','like', '%'.$search.'%');
+    //         $query->orwhere('content','like', '%'.$search.'%');
+    //         $query->orwhere('price','like', '%'.$search.'%');
+    //         $query->orwhere('detail','like', '%'.$search.'%');
+    //     }
+    //     $Items = $query->paginate(20);
         
-        return view("items.items" , [
-            "items" => $Items,
-        ]);
-    }
+    //     return view("items.items" , [
+    //         "items" => $Items,
+    //     ]);
+    // }
 // 編集画面への遷移
     public function edit($id)
     {
@@ -191,7 +191,8 @@ class ItemController extends Controller
         // return view('item.index', compact('items'));
         // 注文一覧取得 検索機能
         $search = $request->input('search');
-        $query = \App\Models\Request::query();
+        $query = \App\Models\Request::select(['requests.*','users.name as username'])
+        ->join('users','users.id','=','requests.user_id');
         if ($search) {
             $query->where('name','like', '%'.$search.'%');
             $query->orwhere('id','like', '%'.$search.'%');
@@ -200,6 +201,8 @@ class ItemController extends Controller
         }
         $orders = $query->paginate(10);
         
+
+
         return view("item.order_history" , [
             "orders" => $orders,
         ]);
@@ -253,7 +256,8 @@ class ItemController extends Controller
         //    return view('item.index', compact('items'));
         //    発注一覧取得 検索機能
            $search = $request->input('search');
-           $query = \App\Models\Confirm::query();
+           $query = \App\Models\Confirm::select(['confirms.*','users.name as username'])
+           ->join('requests','requests.id','=','confirms.user_id');
            if ($search) {
                $query->where('name','like', '%'.$search.'%');
                $query->orwhere('id','like', '%'.$search.'%');

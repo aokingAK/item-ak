@@ -27,7 +27,7 @@
   </div>
 
   <div class="mb-3">
-    種類: {{$item->type_id }}
+    カテゴリー: {{$item->type_id }}
     <input type="hidden" class="form-control" id="exampleInputPassword1" name="type_id" value="{{$item->type_id }}">
   </div>
 

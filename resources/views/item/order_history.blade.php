@@ -27,7 +27,7 @@
                             <tr>
                                 <th>注文者</th>
                                 <th>名前</th>
-                                <th>種別</th>
+                                <th>カテゴリー</th>
                                 <th>詳細</th>
                                 <th>金額</th> 
                                 <th>個数</th> 
@@ -37,7 +37,7 @@
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{ $order->user_id }}</td>
+                                    <td>{{ $order->username }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ App\Models\Item::TYPES[$order->type_id] }}</td>
                                     <td>{{ $order->detail }}</td>

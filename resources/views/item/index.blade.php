@@ -28,7 +28,7 @@
                                 <!-- <th>ID</th> -->
                                 <th scope="col">@sortablelink ('id','品番')</th>
                                 <th scope="col">@sortablelink ('name','名前')</th>
-                                <th scope="col">@sortablelink('type_id','種別')</th>
+                                <th scope="col">@sortablelink('type_id','カテゴリー')</th>
                                 <th scope="col">@sortablelink('detail','詳細')</th>
                                 <th scope="col">@sortablelink('price','金額')</th>      
                             </tr>
