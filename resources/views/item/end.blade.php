@@ -37,7 +37,7 @@
                         <tbody>
                             @foreach ($confirms as $confirm)
                                 <tr>
-                                    <td>{{ $confirm->user_id }}</td>
+                                    <td>{{ $confirm->username }}</td>
                                     <td>{{ $confirm->name }}</td>
                                     <td>{{ App\Models\Item::TYPES[$confirm->type_id] }}</td>
                                     <td>{{ $confirm->detail }}</td>
