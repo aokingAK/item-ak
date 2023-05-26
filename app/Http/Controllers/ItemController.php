@@ -256,7 +256,8 @@ class ItemController extends Controller
         //    return view('item.index', compact('items'));
         //    発注一覧取得 検索機能
            $search = $request->input('search');
-           $query = \App\Models\Confirm::query();
+           $query = \App\Models\Confirm::select(['confirms.*','users.name as username'])
+           ->join('users','users.id','=','confirms.user_id');
            if ($search) {
                $query->where('name','like', '%'.$search.'%');
                $query->orwhere('id','like', '%'.$search.'%');
