@@ -55,7 +55,7 @@ class ItemController extends Controller
         if ($search) {
             $query->where('name','like', '%'.$search.'%');
             $query->orwhere('id','like', '%'.$search.'%');
-            $query->orwhere('type','like', '%'.$search.'%');
+            $query->orwhere('type_id','like', '%'.$search.'%');
             $query->orwhere('detail','like', '%'.$search.'%');
         }
 
@@ -86,7 +86,7 @@ class ItemController extends Controller
             Item::create([
                 'user_id' => Auth::id(),
                 'name' => $request->name,
-                'type' => $request->type,
+                'type_id' => $request->type_id,
                 'detail' => $request->detail,
                 'price' => $request->price,
             ]);
@@ -129,7 +129,7 @@ class ItemController extends Controller
     {
         $Items = Item::find($id);
         $Items -> name =$request -> name;
-        $Items -> type = $request -> type;
+        $Items -> type_id = $request -> type_id;
         $Items -> price = $request -> price;
         $Items -> detail = $request -> detail;
         $Items -> save();
