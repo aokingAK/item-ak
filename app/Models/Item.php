@@ -22,6 +22,12 @@ class Item extends Model
         'price',
     ];
 
+    public const TYPES=[
+        '1' => '文房具',
+        '2' => '洗面・風呂',
+        '3' => '客室',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

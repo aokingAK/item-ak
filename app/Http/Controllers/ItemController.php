@@ -10,6 +10,18 @@ use Whoops\Run;
 
 class ItemController extends Controller
 {
+    // public function create()
+    // {
+    //     $script = "<script>window.alert('hello world')</script>";
+    //     return view('posts.create',compact(
+    //         'script'
+    //     ));
+    // }
+
+    // {{ $script }} // エスケープされるためalertは実行されない
+    // {{!! $script !!}} // ちなみに両端「!!」の場合は、alertが実行されますので注意です
+
+
     /**
      * Create a new controller instance.
      *

@@ -28,7 +28,7 @@
                                 <!-- <th>ID</th> -->
                                 <th scope="col">@sortablelink ('id','品番')</th>
                                 <th scope="col">@sortablelink ('name','名前')</th>
-                                <th scope="col">@sortablelink('type','種別')</th>
+                                <th scope="col">@sortablelink('type_id','種別')</th>
                                 <th scope="col">@sortablelink('detail','詳細')</th>
                                 <th scope="col">@sortablelink('price','金額')</th>      
                             </tr>
@@ -38,7 +38,7 @@
                                 <tr>
                                     <td scope="row">{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->type }}</td>
+                                    <td>{{ App\Models\Item::TYPES[$item->type_id] }}</td>
                                     <td>{{ $item->detail }}</td>
                                     <td>{{ $item->price }}</td>    
                                     <!-- 管理者のみに表示 -->

@@ -14,11 +14,12 @@ class Confirm extends Model
     protected $fillable = [
         'user_id',
         'name',
-        'type',
+        'type_id',
         'detail',
         'price',
         'count',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
