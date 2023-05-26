@@ -7,17 +7,7 @@
  <div class="text-center" >
     <form class=  "mx-auto" action="{{ url('/items/edit/'.$item->id) }}" method="POST">
     @csrf
-    <!-- <div class="col-md-6">
-        <input type="text" class="form-control" id="" name="name" value="{{$item->name }}">
-    </div>
-    <div>
-        <input type="text" class="form-control" id="" name="tel" value="{{$item->tel }}">
-    </div>
-    <div>
-        <input type="text" class="form-control" id="" name="email" value="{{$item->email }}">
-    </div>
-</div> -->
-
+  
   <div class="mb-3">
     <label class="form-label">商品名</label>
     <input type="text" class="form-control" id="" name="name" value="{{$item->name }}">
@@ -25,7 +15,7 @@
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">種類</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="type_id" value="{{$item->type }}">
+    <input type="text" class="form-control" id="exampleInputPassword1" name="type_id" value="{{$item->type_id }}">
   </div>
 
   <div class="mb-3">
