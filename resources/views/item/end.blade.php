@@ -25,7 +25,7 @@
                     <table class="table table-hover text-nowrap table table-striped table-bordered text-center">
                         <thead>
                             <tr>
-                                <th>注文者</th>
+                                <th>発注者</th>
                                 <th>名前</th>
                                 <th>カテゴリー</th>
                                 <th>詳細</th>
