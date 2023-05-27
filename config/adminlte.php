@@ -232,13 +232,13 @@ return [
         ],
 
         [
-            'text' => '注文履歴',
+            'text' => '注文一覧',
             'url'  => 'items/order_history',
             'icon' => 'fas fa-gamepad',
         ],
 
         [
-            'text' => '発注履歴',
+            'text' => '発注一覧',
             'url'  => 'items/end',
             'icon' => 'fas fa-gamepad',
         ],
