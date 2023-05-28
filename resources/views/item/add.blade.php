@@ -31,7 +31,11 @@
 
                         <div class="form-group">
                             <label for="type">カテゴリー</label>
-                            <input type="number" class="form-control" id="type_id" name="type_id" placeholder="1, 2, 3, ...">
+                            <select type="number" class="form-control" id="type_id" name="type_id">
+                            <option value='1'>文房具</option>
+                            <option value='2'>洗面・風呂</option>
+                            <option value='3'>客室</option>
+                            </select>
                         </div>
 
                         <div class="form-group">

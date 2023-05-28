@@ -73,6 +73,8 @@ class ItemController extends Controller
     /**
      * 商品登録
      */
+
+     
     public function add(Request $request)
     {
         // POSTリクエストのとき
