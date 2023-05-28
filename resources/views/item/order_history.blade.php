@@ -25,6 +25,7 @@
                     <table class="table table-hover text-nowrap table table-striped table-bordered text-center">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>注文者</th>
                                 <th>名前</th>
                                 <th>カテゴリー</th>
@@ -37,6 +38,7 @@
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
+                                    <td>{{ $order->id }}</td>
                                     <td>{{ $order->username }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ App\Models\Item::TYPES[$order->type_id] }}</td>

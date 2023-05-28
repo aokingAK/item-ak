@@ -25,7 +25,6 @@
                     <table class="table table-hover text-nowrap table table-striped table-bordered text-center">
                         <thead>
                             <tr>
-                                <th>ID</th> 
                                 <th>発注者</th>
                                 <th>名前</th>
                                 <th>カテゴリー</th>
@@ -38,7 +37,6 @@
                         <tbody>
                             @foreach ($confirms as $confirm)
                                 <tr>
-                                    <td>{{ $confirm->id }}</td>                                   
                                     <td>{{ $confirm->username }}</td>
                                     <td>{{ $confirm->name }}</td>
                                     <td>{{ App\Models\Item::TYPES[$confirm->type_id] }}</td>
