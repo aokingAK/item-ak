@@ -15,7 +15,11 @@
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">カテゴリー</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" name="type_id" value="{{$item->type_id }}">
+      <select type="text" class="form-control" id="exampleInputPassword1" name="type_id" value="{{$item->type_id }}">
+        <option value='1'>文房具</option>
+        <option value='2'>洗面・風呂</option>
+        <option value='3'>客室</option> 
+      </select>
   </div>
 
   <div class="mb-3">

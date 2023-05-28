@@ -53,13 +53,11 @@ class ItemController extends Controller
         $search = $request->input('search');
         $query = Item::query();
         if ($search) {
-            // $query->where('name','like', '%'.$search.'%');
-            $query->orwhere("name","like","%${search}%")->get(); 
-
-            // $query->orwhere('id','like', '%'.$search.'%');
-            // $query->orwhere('type_id','like', '%'.$search.'%');
-            // $query->orwhere('detail','like', '%'.$search.'%');
-        }    
+            $query->where('name','like', '%'.$search.'%');
+            $query->orwhere('id','like', '%'.$search.'%');
+            $query->orwhere('type_id','like', '%'.$search.'%');
+            $query->orwhere('detail','like', '%'.$search.'%');
+        }
 
         $items = $query->sortable()->paginate(10)->appends([
             'search'=>$search,
@@ -75,8 +73,6 @@ class ItemController extends Controller
     /**
      * 商品登録
      */
-
-     
     public function add(Request $request)
     {
         // POSTリクエストのとき
