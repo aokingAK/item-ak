@@ -199,7 +199,7 @@ class ItemController extends Controller
             $query->orwhere('type_id','like', '%'.$search.'%');
             $query->orwhere('detail','like', '%'.$search.'%');
         }
-        $orders = $query->paginate(10);
+        $orders = $query->orderBy('created_at','asc')->paginate(10);
         
 
 

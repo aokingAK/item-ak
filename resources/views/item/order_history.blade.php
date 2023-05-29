@@ -37,6 +37,7 @@
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr>
+                                    
                                     <td>{{ $order->username }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>{{ App\Models\Item::TYPES[$order->type_id] }}</td>
