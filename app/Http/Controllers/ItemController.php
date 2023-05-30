@@ -84,8 +84,8 @@ class ItemController extends Controller
             ], [
                 'name.required' => '商品名は必須です',
                 'price.required' => '金額は必須です(0は認めません)',
-                'price.min:1' => '数字は1以上で入力してください',
-                'price.integer' => '数字のみ入力してください',
+                'price.integer' => '金額は数字のみ入力してください',
+                'price.min:1' => '金額の数字は1以上で入力してください',
             ]);
         
 
