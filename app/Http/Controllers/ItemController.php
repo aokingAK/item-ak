@@ -83,7 +83,7 @@ class ItemController extends Controller
                 'price' => 'required','integer','min:1',
             ], [
                 'name.required' => '商品名は必須です',
-                'price'.'required' => '金額は必須です(0は認めません)',
+                'price.required' => '金額は必須です(0は認めません)',
             ]);
         
 
