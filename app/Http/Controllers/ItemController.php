@@ -278,7 +278,7 @@ class ItemController extends Controller
                 'type' => ['required'],
                 'price' => ['required','integer','min:1'],
            ]);
-   
+       }
 
 
   }
