@@ -80,7 +80,10 @@ class ItemController extends Controller
             // バリデーション
             $this->validate($request, [
                 'name' => 'required|max:100',
-            ]);
+                'type' => 'required',
+                'price' => 'required','integer','min:1',
+           ]);
+
 
             // 商品登録
             Item::create([
@@ -268,15 +271,6 @@ class ItemController extends Controller
            
            return view("item.end" , [
                "confirms" => $confirms,
-           ]);
-       }
-
-       public function store(Request $request)
-       {
-            $request->validate([
-                'name' => ['required'],
-                'type' => ['required'],
-                'price' => ['required','integer','min:1'],
            ]);
        }
 
