@@ -81,8 +81,10 @@ class ItemController extends Controller
             $this->validate($request, [
                 'name' => 'required|max:100',
                 'price' => 'required','integer','min:1',
-            ],['name.required' => '商品名は必須です',
-                'price'.'required','integer','min:1' => '金額は必須です(0は認めません)']);
+            ], [
+                'name.required' => '商品名は必須です',
+                'price'.'required' => '金額は必須です(0は認めません)'
+            ]);
         
 
             // 商品登録
