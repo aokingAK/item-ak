@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>発注者</th>
-                                <th>名前</th>
+                                <th>商品名</th>
                                 <th>カテゴリー</th>
                                 <th>詳細</th>
                                 <th>金額</th> 
