@@ -79,8 +79,8 @@ class ItemController extends Controller
         if ($request->isMethod('post')) {
             // バリデーション
             $this->validate($request, [
-                'name' => ['required|max:100'],
-                'price' => ['required','integer','min:1'],
+                'name' => 'required|max:100',
+                'price' => 'required|integer|min:1',
             ], [
                 'name.required' => '商品名は必須です',
                 'price.required' => '金額は必須です(0は認めません)',
