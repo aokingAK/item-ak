@@ -147,10 +147,10 @@ class ItemController extends Controller
             ]);
             
             $Items = Item::find($id);
-            $Items -> name =$request -> name;
-            $Items -> type_id = $request -> type_id;
-            $Items -> price = $request -> price;
-            $Items -> detail = $request -> detail;
+            // $Items -> name =$request -> name;
+            // $Items -> type_id = $request -> type_id;
+            // $Items -> price = $request -> price;
+            // $Items -> detail = $request -> detail;
             $Items ->fill($request->all())->save();
         }
 
