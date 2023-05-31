@@ -34,6 +34,13 @@
 
 
 <div class="text-center">
+  @if($errors->any())
+    <ul>
+      @foreach ($errors->all() as $error) 
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
 <input type="submit" value="更新">
 </form>
 
