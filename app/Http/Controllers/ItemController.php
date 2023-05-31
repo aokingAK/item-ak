@@ -151,8 +151,9 @@ class ItemController extends Controller
                 'price.integer' => '金額は数字のみ入力してください',
                 'price.min' => '金額の数字は1以上で入力してください',
             ]);
+            
 
-            $Items -> save();
+            $Items ->fill($request->all())->save();
         }
 
         return redirect('/items');
