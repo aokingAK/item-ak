@@ -139,7 +139,6 @@ class ItemController extends Controller
         $Items -> type_id = $request -> type_id;
         $Items -> price = $request -> price;
         $Items -> detail = $request -> detail;
-        $Items -> save();
     
         if ($request->isMethod('post')) {
             // バリデーション
@@ -152,6 +151,8 @@ class ItemController extends Controller
                 'price.integer' => '金額は数字のみ入力してください',
                 'price.min' => '金額の数字は1以上で入力してください',
             ]);
+
+            $Items -> save();
         }
 
         return redirect('/items');
