@@ -141,6 +141,7 @@ class ItemController extends Controller
         $Items -> detail = $request -> detail;
         $Items -> save();
 
+
         // POSTリクエストのとき
         if ($request->isMethod('post')) {
             // バリデーション
@@ -155,6 +156,7 @@ class ItemController extends Controller
             ]);
            
         return redirect('/items');
+        }
     }
 
    /**
