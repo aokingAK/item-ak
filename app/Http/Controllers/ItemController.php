@@ -140,9 +140,7 @@ class ItemController extends Controller
         $Items -> price = $request -> price;
         $Items -> detail = $request -> detail;
         $Items -> save();
-
-
-        // POSTリクエストのとき
+    
         if ($request->isMethod('post')) {
             // バリデーション
             $this->validate($request, [
@@ -154,9 +152,9 @@ class ItemController extends Controller
                 'price.integer' => '金額は数字のみ入力してください',
                 'price.min' => '金額の数字は1以上で入力してください',
             ]);
-           
-        return redirect('/items');
         }
+
+        return redirect('/items');
     }
 
    /**
