@@ -33,7 +33,7 @@
   </div>
 
 
-<div class="text-center">
+<div class="text-center text-danger">
   @if($errors->any())
     <ul>
       @foreach ($errors->all() as $error) 
