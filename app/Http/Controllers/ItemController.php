@@ -134,12 +134,6 @@ class ItemController extends Controller
 // 編集処理
     public function update(Request $request , $id)
     {
-        $Items = Item::find($id);
-        $Items -> name =$request -> name;
-        $Items -> type_id = $request -> type_id;
-        $Items -> price = $request -> price;
-        $Items -> detail = $request -> detail;
-    
         if ($request->isMethod('post')) {
             // バリデーション
             $this->validate($request, [
@@ -152,7 +146,11 @@ class ItemController extends Controller
                 'price.min' => '金額の数字は1以上で入力してください',
             ]);
             
-
+            $Items = Item::find($id);
+            $Items -> name =$request -> name;
+            $Items -> type_id = $request -> type_id;
+            $Items -> price = $request -> price;
+            $Items -> detail = $request -> detail;
             $Items ->fill($request->all())->save();
         }
 
