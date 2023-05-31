@@ -151,7 +151,7 @@ class ItemController extends Controller
             // $Items -> type_id = $request -> type_id;
             // $Items -> price = $request -> price;
             // $Items -> detail = $request -> detail;
-            $Items ->fill($request->all())->save();
+            $Items -> save();
         }
 
         return redirect('/items');
