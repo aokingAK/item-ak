@@ -2,8 +2,17 @@
 
 @section('title', '商品一覧')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('/css/style.css')  }}">
+@stop
+
 @section('content_header')
     <h1>注文一覧</h1>
+    @if (session('flash_message'))
+    <div class="my-alert alert alert-success" role="alert">
+         {{ session('flash_message') }}
+    </div>
+    @endif
 @stop
 
 <div class="panel panel-default">
@@ -47,7 +56,7 @@
                                     <td>{{ $order->created_at }}</td>      
                                     <td>
                                         @if(Auth::user()->id ===$order->user_id)
-                                         <form action="{{ url('items/order_history/delete/'.$order->id) }}" method="POST">
+                                         <form action="{{ url('items/order_history/delete/'.$order->id) }}" method="POST" onclick='return confirm("削除しますか？")'>
                                         {{ csrf_field() }}
                                         <input class="btn btn-danger" type="submit" id="delete-items-{{ $order->id }}"  value="削除">
                                         </form>
@@ -75,8 +84,8 @@
     </div>
 @stop
 
-@section('css')
-@stop
+
 
 @section('js')
+<script src="{{ asset('/js/main.js')  }}"></script>
 @stop

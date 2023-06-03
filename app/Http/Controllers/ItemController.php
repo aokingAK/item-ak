@@ -239,7 +239,7 @@ class ItemController extends Controller
         {
             $orders = \App\Models\Request::find($id);
             $orders->delete();
-            return redirect('/items/order_history');
+            return redirect('/items/order_history')->with('flash_message','削除に成功しました');
         }
 
         // 注文処理
